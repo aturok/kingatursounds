@@ -74,32 +74,11 @@ live_loop :string do
   if do_strings == 1
     a = 0.5+rrand(0.0,0.3)
   end
+  ps = [-24,-12,-8,-4,0]
+  rs = [1, 1.1, 1.2]
+  sample :guit_harmonics, pitch: ps.choose, amp: a, finish: 1, start: 0.0, rate: rs.choose
+  sleep 2.8
   
-  
-  tick_reset
-  5.times do
-    nn = notes[tick-1]
-    c = [chord(nn,'m+5')].choose
-    #synth :subpulse, amp: 0.5*a, note: c[0], cutoff: 30, release: 0.2
-    synth :pluck, amp: a, note: c[0], coeff: cc, pluck_decay: pd
-    synth :pluck, amp: a, note: c[1], coeff: cc, pluck_decay: pd
-    synth :pluck, amp: a, note: c[2], coeff: cc, pluck_decay: pd
-    #synth :pluck, amp: a, note: c[3]-12, coeff: cc, pluck_decay: pd
-    sleep 0.2+rrand(0,1)*0.05
-  end
-  tick_reset
-  
-  5.times do
-    nn = notes2.choose
-    c = [chord(nn,'6*9')].choose
-    #synth :subpulse, amp: 0.5*a, note: c[0], cutoff: 30, release: 0.2
-    synth :pluck, amp: a, note: c[0], coeff: cc, pluck_decay: pd
-    synth :pluck, amp: a, note: c[1], coeff: cc, pluck_decay: pd
-    synth :pluck, amp: a, note: c[2], coeff: cc, pluck_decay: pd
-    sleep 0.4++rrand(0,1)*0.05
-  end
-  sleep 0.2
-  #end
 end
 
 
